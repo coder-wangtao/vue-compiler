@@ -29,4 +29,8 @@ options(
 
 3.4 再通过 transform：传入 nodeTransforms、directiveTransforms 和《模版 AST 抽象语法树》，通过 transform 转化为《《javascript AST 抽象语法树》》，在这一过程中 v-for、v-model 等指令已经被转换函数给处理了。得到的 javascript AST 抽象语法树的结构和 render 函数的结构一模一样，javascript AST 抽象语法树就是对 render 函数的结构进行描述。
 
-3.5generate：拿到了和 render 函数的结构一模一样的 javascript AST 抽象语法树，只需要在 generate 函数中遍历 javascript AST 抽象语法树进行字符串拼接就可以得到 render 函数了。
+3.5 generate：拿到了和 render 函数的结构一模一样的 javascript AST 抽象语法树，只需要在 generate 函数中遍历 javascript AST 抽象语法树进行字符串拼接就可以得到 render 函数了。
+
+//后面
+generate 阶段是如何根据这棵 javascript AST 抽象语法树生成 render 函数字符串的？
+render 函数的生成其实很简单，经过 transform 阶段处理后会生成一棵 javascript AST 抽象语法树，这棵树的结构和要生成的 render 函数结构是一模一样的。所以在 generate 函数中只需要递归遍历这棵树，进行字符串拼接就可以生成 render 函数啦！
