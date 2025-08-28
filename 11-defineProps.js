@@ -1,0 +1,14 @@
+// 为什么defineProps不需要import导入？
+// 因为在编译过程中如果当前AST抽象语法树的节点类型是ExpressionStatement表达式语句，并且调用的函数是defineProps，
+// 那么就调用remove方法将调用defineProps函数的代码给移除掉。既然defineProps语句已经被移除了，自然也就不需要import导入了defineProps了。
+
+// 为什么不能在非setup顶层使用defineProps？
+// 因为在非setup顶层使用defineProps的代码生成AST抽象语法树后节点类型就不是ExpressionStatement表达式语句类型，
+// 只有ExpressionStatement表达式语句类型才会走到processDefineProps函数中，并且调用remove方法将调用defineProps函数的代码给移除掉。
+// 当代码运行在浏览器时由于我们没有从任何地方import导入defineProps，当然就会报错defineProps is not defined。
+
+// defineProps是如何将声明的 props 自动暴露给模板？
+// 编译时在移除掉defineProps相关代码时会将调用defineProps函数时传入的参数node节点信息存到ctx上下文中。遍历完AST抽象语法树后，
+// 然后从上下文中存的参数node节点信息中拿到调用defineProps宏函数时传入props的开始位置和结束位置。
+// 再使用slice方法并且传入开始位置和结束位置，从<script setup>模块的代码字符串中截取到props定义的字符串。
+// 然后将截取到的props定义的字符串拼接到vue组件对象的字符串中，这样vue组件对象中就有了一个props属性，这个props属性在template模版中可以直接使用。
