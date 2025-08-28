@@ -1,0 +1,1 @@
+// 为什么setup语法糖中的顶层绑定可以在template中直接使用的呢？setup语法糖是如何编译成setup函数的呢？
