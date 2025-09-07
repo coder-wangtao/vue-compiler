@@ -68,6 +68,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
 
 // 浏览器是不认识v-bind(primaryColor);指令的，所以经过编译后就变成了浏览器认识的css变量var(--c845efc6-primaryColor);。
 
-// 我们的<span>标签在编译阶段由color: v-bind(primaryColor);编译成了css变量color: var(--c845efc6-primaryColor)。
+// 我们的<span>标签在编译阶段由color: v-bind(primaryColor);
+// 编译成了css变量color: var(--c845efc6-primaryColor)。
+
 // 并且在运行时由于useCssVars函数的作用在根节点生成了css变量的定义--c845efc6-primaryColor: red;。由于css继承，
 // 所以span标签也继承了这个css变量的定义，所以span标签渲染到页面上的color值最终为red。

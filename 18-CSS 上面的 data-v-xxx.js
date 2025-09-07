@@ -33,7 +33,7 @@
 
 // 第二部分在@vue/compiler-sfc包执行。
 // compileStyleAsync函数依然不是实际干活的地方，而是调用了doCompileStyle函数。
-// 在doCompileStyle函数中，如果scoped为true就向plugins数组中插入一个    插件，这个是vue写的postcss插件，
+// 在doCompileStyle函数中，如果scoped为true就向plugins数组中插入一个scopedPlugin插件，这个是vue写的postcss插件，
 // 用于处理css scoped。然后使用postcss转换编译器对css代码进行转换。
 // 当postcss处理到选择器开头的规则就会走到scopedPlugin插件中的Rule钩子函数中。在Rule钩子函数中会执行processRule函数。
 // 在processRule函数中会使用postcss-selector-parser包将当前选择器替换为一个新的选择器，

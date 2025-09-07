@@ -1,6 +1,4 @@
-value.compiler 的值就是 Vue 的底层库 vue/compiler-sfc
-
-@vitejs/plugin-vue 插件中有个叫 transform 的钩子函数，
+n@vitejs/plugin-vue 插件中有个叫 transform 的钩子函数，
 当 Vite 加载模块的时候就会触发这个钩子函数。所以当 import 一个 Vue 文件的时候，就会走到 @vitejs/plugin-vue 中的 transform 钩子函数中，在 transform 钩子函数中主要调用了 transformMain 函数。
 transformMain 最主要的逻辑是：  
 //1.对 script: 用 vue/compiler-sfc 的 compileScript 函数，将 Vue 文件的 <script setup> 模块转换为浏览器可直接执行的 JavaScript 代码。
